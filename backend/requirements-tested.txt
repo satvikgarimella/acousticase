@@ -1,0 +1,15 @@
+# Tested direct dependencies on macOS arm64 / Python 3.12.14; includes optional classifier and tests.
+numpy==2.5.5
+scipy==1.18.1
+soundfile==0.14.0
+av==19.0.2
+matplotlib==3.11.2
+fastapi==0.165.0
+uvicorn==0.54.0
+python-multipart==0.0.34
+pydantic==2.14.4
+tensorflow==2.21.0
+tf-keras==2.21.0
+requests==2.34.2
+pytest==9.2.0
+httpx==0.28.1

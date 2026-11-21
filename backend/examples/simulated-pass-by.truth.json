@@ -1,0 +1,11 @@
+{
+  "is_simulated": true,
+  "source": "generated constant-tone straight pass; not a real vehicle recording",
+  "speed_m_s": 20.0,
+  "speed_km_h": 72.0,
+  "closest_distance_m": 25.0,
+  "emitted_frequency_hz": 600.0,
+  "geometric_closest_approach_emission_s": 7.5,
+  "received_closest_approach_s": 7.572886297376093,
+  "transient_start_s": 12.5
+}

@@ -1,0 +1,3 @@
+YAMNet source: https://github.com/tensorflow/models/tree/master/research/audioset/yamnet
+Copyright 2019 The TensorFlow Authors. Apache License 2.0.
+Retrieved 2026-11-21. Modifications: package-relative features import in yamnet.py; class-map CSV line endings normalized to LF.

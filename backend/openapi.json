@@ -1,0 +1,578 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AcoustiCase \u2014 Satvik's backend",
+    "description": "Local experimental audio investigation API. Single worker; no authentication. See README before deployment.",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analyses": {
+      "post": {
+        "summary": "Analyze",
+        "operationId": "analyze_analyses_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_analyze_analyses_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStatus"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analyses/{analysis_id}": {
+      "get": {
+        "summary": "Get Status",
+        "operationId": "get_status_analyses__analysis_id__get",
+        "parameters": [
+          {
+            "name": "analysis_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Analysis Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStatus"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analyses/{analysis_id}/results": {
+      "get": {
+        "summary": "Get Results",
+        "operationId": "get_results_analyses__analysis_id__results_get",
+        "parameters": [
+          {
+            "name": "analysis_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Analysis Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalysisResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analyses/{analysis_id}/assets/{name}": {
+      "get": {
+        "summary": "Get Asset",
+        "operationId": "get_asset_analyses__analysis_id__assets__name__get",
+        "parameters": [
+          {
+            "name": "analysis_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Analysis Id"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AnalysisOptions": {
+        "properties": {
+          "tracking_start_s": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Tracking Start S",
+            "default": 0
+          },
+          "tracking_end_s": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tracking End S"
+          },
+          "frequency_min_hz": {
+            "type": "number",
+            "maximum": 3000.0,
+            "minimum": 30.0,
+            "title": "Frequency Min Hz",
+            "default": 80
+          },
+          "frequency_max_hz": {
+            "type": "number",
+            "maximum": 4000.0,
+            "minimum": 50.0,
+            "title": "Frequency Max Hz",
+            "default": 1500
+          },
+          "speed_of_sound_m_s": {
+            "type": "number",
+            "maximum": 380.0,
+            "minimum": 300.0,
+            "title": "Speed Of Sound M S",
+            "default": 343
+          },
+          "assume_constant_tone": {
+            "type": "boolean",
+            "title": "Assume Constant Tone",
+            "default": false
+          },
+          "assume_stationary_microphone": {
+            "type": "boolean",
+            "title": "Assume Stationary Microphone",
+            "default": false
+          },
+          "is_simulated": {
+            "type": "boolean",
+            "title": "Is Simulated",
+            "default": false
+          },
+          "use_classifier": {
+            "type": "boolean",
+            "title": "Use Classifier",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "AnalysisOptions"
+      },
+      "AnalysisResult": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "1.0"
+          },
+          "pipeline_version": {
+            "type": "string",
+            "title": "Pipeline Version"
+          },
+          "analysis_id": {
+            "type": "string",
+            "title": "Analysis Id"
+          },
+          "status": {
+            "type": "string",
+            "const": "complete",
+            "title": "Status",
+            "default": "complete"
+          },
+          "recording": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Recording"
+          },
+          "options": {
+            "$ref": "#/components/schemas/AnalysisOptions"
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/Event"
+            },
+            "type": "array",
+            "title": "Events"
+          },
+          "motion": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Motion"
+          },
+          "findings": {
+            "items": {
+              "$ref": "#/components/schemas/Finding"
+            },
+            "type": "array",
+            "title": "Findings"
+          },
+          "classifier": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Classifier"
+          },
+          "assets": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Assets"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          },
+          "processing_seconds": {
+            "type": "number",
+            "title": "Processing Seconds"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pipeline_version",
+          "analysis_id",
+          "recording",
+          "options",
+          "events",
+          "motion",
+          "findings",
+          "classifier",
+          "assets",
+          "warnings",
+          "limitations",
+          "processing_seconds"
+        ],
+        "title": "AnalysisResult"
+      },
+      "Body_analyze_analyses_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          },
+          "options": {
+            "type": "string",
+            "title": "Options",
+            "default": "{}"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_analyze_analyses_post"
+      },
+      "Event": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "start_s": {
+            "type": "number",
+            "title": "Start S"
+          },
+          "end_s": {
+            "type": "number",
+            "title": "End S"
+          },
+          "peak_s": {
+            "type": "number",
+            "title": "Peak S"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "transient",
+              "sound_class",
+              "tonal_track",
+              "possible_pass_by"
+            ],
+            "title": "Kind"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "evidence_type": {
+            "type": "string",
+            "enum": [
+              "measurement",
+              "model_suggestion",
+              "conditional_inference"
+            ],
+            "title": "Evidence Type"
+          },
+          "measurements": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Measurements"
+          },
+          "explanation": {
+            "type": "string",
+            "title": "Explanation"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "start_s",
+          "end_s",
+          "peak_s",
+          "kind",
+          "label",
+          "evidence_type",
+          "explanation"
+        ],
+        "title": "Event"
+      },
+      "Finding": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Ids"
+          },
+          "evidence_type": {
+            "type": "string",
+            "enum": [
+              "measurement",
+              "model_suggestion",
+              "conditional_inference"
+            ],
+            "title": "Evidence Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "text",
+          "evidence_ids",
+          "evidence_type"
+        ],
+        "title": "Finding"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "JobStatus": {
+        "properties": {
+          "analysis_id": {
+            "type": "string",
+            "title": "Analysis Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "complete",
+              "failed"
+            ],
+            "title": "Status"
+          },
+          "stage": {
+            "type": "string",
+            "title": "Stage"
+          },
+          "progress": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Progress"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "results_url": {
+            "type": "string",
+            "title": "Results Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "analysis_id",
+          "status",
+          "stage",
+          "progress",
+          "results_url"
+        ],
+        "title": "JobStatus"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
