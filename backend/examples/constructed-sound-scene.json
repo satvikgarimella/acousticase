@@ -1,0 +1,51 @@
+{
+  "is_simulated": true,
+  "description": "Constructed collage of separate field recordings. Not a recording of a real incident.",
+  "selection": "Highest mean target-group score in training folds per class; curated for demonstration, not evaluation.",
+  "timing_note": "Spans locate inserted source excerpts, not manually annotated sound onsets.",
+  "modifications": "Resampled to mono 16 kHz; 10 ms edge fades; one-second silent gaps; PCM16 export.",
+  "source_revision": "33c8ce9eb2cf0b1c2f8bcf322eb349b6be34dbb6",
+  "license": "ESC-50 CC BY-NC 3.0; see ../evaluation/ESC50-LICENSE for all source attributions.",
+  "excerpts": [
+    {
+      "category": "engine",
+      "excerpt_start_s": 1.0,
+      "excerpt_end_s": 6.0,
+      "source_file": "3-259622-A-44.wav",
+      "source_sha256": "eb30bc224e09c0462d51c07ce2fbd275088b0b5af9067784cabbb086d1a2ba7a",
+      "source_url": "https://raw.githubusercontent.com/karolpiczak/ESC-50/33c8ce9eb2cf0b1c2f8bcf322eb349b6be34dbb6/audio/3-259622-A-44.wav",
+      "freesound_id": "259622",
+      "fold": 3
+    },
+    {
+      "category": "car_horn",
+      "excerpt_start_s": 7.0,
+      "excerpt_end_s": 12.0,
+      "source_file": "2-125520-A-43.wav",
+      "source_sha256": "79e2335cf1fa4b0a6be7d2a93007f630acd89e178405ae2fabf45ee3af801fda",
+      "source_url": "https://raw.githubusercontent.com/karolpiczak/ESC-50/33c8ce9eb2cf0b1c2f8bcf322eb349b6be34dbb6/audio/2-125520-A-43.wav",
+      "freesound_id": "125520",
+      "fold": 2
+    },
+    {
+      "category": "glass_breaking",
+      "excerpt_start_s": 13.0,
+      "excerpt_end_s": 18.0,
+      "source_file": "2-112213-A-39.wav",
+      "source_sha256": "a6b60fb2268d7f0ceda0ff6f798d2d51b4ceb08218b3ac5ca91980a42d9c706b",
+      "source_url": "https://raw.githubusercontent.com/karolpiczak/ESC-50/33c8ce9eb2cf0b1c2f8bcf322eb349b6be34dbb6/audio/2-112213-A-39.wav",
+      "freesound_id": "112213",
+      "fold": 2
+    },
+    {
+      "category": "siren",
+      "excerpt_start_s": 19.0,
+      "excerpt_end_s": 24.0,
+      "source_file": "3-51376-A-42.wav",
+      "source_sha256": "de32c52b3f928f02ad8dd388f424bbe7c7e22dbe4614cfcd2a271946aec3325a",
+      "source_url": "https://raw.githubusercontent.com/karolpiczak/ESC-50/33c8ce9eb2cf0b1c2f8bcf322eb349b6be34dbb6/audio/3-51376-A-42.wav",
+      "freesound_id": "51376",
+      "fold": 3
+    }
+  ]
+}

@@ -44,16 +44,20 @@ def main():
         for key in ["waveform_url", "track_url"]:
             payload = client.get(base+result["assets"][key])
             payload.raise_for_status()
-            (examples/(key.replace("_url", "")+".json")).write_text(payload.text)
+            (examples/(key.replace("_url", "")+".json")).write_text(payload.text.rstrip()+"\n")
         image = client.get(base+result["assets"]["spectrogram_url"])
         image.raise_for_status()
         (examples/"spectrogram.png").write_bytes(image.content)
         report = client.get(base+result["assets"]["report_url"])
         report.raise_for_status()
-        (examples/"example-report.md").write_text(report.text)
+        (examples/"example-report.md").write_text(report.text.rstrip()+"\n")
+        if "sound_scores_url" in result["assets"]:
+            scores = client.get(base+result["assets"]["sound_scores_url"])
+            scores.raise_for_status()
+            (examples/"sound-scores.json").write_text(scores.text+"\n")
         schema = client.get(base+"/openapi.json")
         schema.raise_for_status()
-        (examples.parent/"openapi.json").write_text(json.dumps(schema.json(), indent=2))
+        (examples.parent/"openapi.json").write_text(json.dumps(schema.json(), indent=2)+"\n")
         assert client.get(base+"/docs").status_code == 200
         print(json.dumps({"speed_km_h": result["motion"]["speed_km_h"],
                           "received_cpa_s": result["motion"]["received_closest_approach_s"],

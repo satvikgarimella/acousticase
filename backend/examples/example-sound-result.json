@@ -1,0 +1,477 @@
+{
+  "schema_version": "1.0",
+  "pipeline_version": "0.2.0",
+  "analysis_id": "a1245561f7be4e63eb317620c0a205af",
+  "status": "complete",
+  "recording": {
+    "filename": "constructed-sound-scene.wav",
+    "sha256": "196db9f7217fd735fe937441ca35b5e9cc2f2a1ef0850e89277f9ba44f549ca7",
+    "size_bytes": 800044,
+    "duration_s": 25.0,
+    "analysis_sample_rate_hz": 16000,
+    "source_sample_rate_hz": 16000,
+    "source_channels": 1,
+    "original_audio_start_s": 0,
+    "timebase": "seconds_from_first_decoded_audio_sample",
+    "is_simulated": true
+  },
+  "options": {
+    "tracking_start_s": 0.0,
+    "tracking_end_s": null,
+    "frequency_min_hz": 80.0,
+    "frequency_max_hz": 1500.0,
+    "speed_of_sound_m_s": 343.0,
+    "assume_constant_tone": false,
+    "assume_stationary_microphone": false,
+    "is_simulated": true,
+    "use_classifier": true
+  },
+  "events": [
+    {
+      "id": "transient-1",
+      "start_s": 0.9486875,
+      "end_s": 1.1486874999999999,
+      "peak_s": 1.0286875,
+      "kind": "transient",
+      "label": "Sudden acoustic transient",
+      "evidence_type": "measurement",
+      "measurements": {
+        "rms_rise_db": 132.37,
+        "peak_dbfs": -6.77
+      },
+      "explanation": "A rapid increase in recorded signal energy. Its cause is not determined; this does not establish a collision."
+    },
+    {
+      "id": "class-1",
+      "start_s": 0.96,
+      "end_s": 6.72,
+      "peak_s": 4.32,
+      "kind": "sound_class",
+      "label": "Possible engine sound",
+      "evidence_type": "model_suggestion",
+      "measurements": {
+        "class_label": "engine sound",
+        "sound_group": "engine",
+        "model_score": 0.803583025932312,
+        "mean_model_score": 0.5919892408631064,
+        "onset_threshold": 0.15,
+        "active_frames": 11,
+        "source_labels": [
+          {
+            "label": "Engine",
+            "peak_model_score": 0.803583025932312
+          },
+          {
+            "label": "Idling",
+            "peak_model_score": 0.4517166316509247
+          },
+          {
+            "label": "Medium engine (mid frequency)",
+            "peak_model_score": 0.4227917790412903
+          },
+          {
+            "label": "Heavy engine (low frequency)",
+            "peak_model_score": 0.20350392162799835
+          },
+          {
+            "label": "Engine starting",
+            "peak_model_score": 0.16629652678966522
+          },
+          {
+            "label": "Accelerating, revving, vroom",
+            "peak_model_score": 0.08092378824949265
+          },
+          {
+            "label": "Light engine (high frequency)",
+            "peak_model_score": 0.0037446680944412947
+          }
+        ],
+        "timing_resolution_s": 0.48
+      },
+      "explanation": "Grouped YAMNet suggestion with approximate window boundaries. Scores are uncalibrated; the label does not establish source identity, a collision, or its cause."
+    },
+    {
+      "id": "transient-2",
+      "start_s": 1.6164375,
+      "end_s": 1.8164375000000001,
+      "peak_s": 1.6964375,
+      "kind": "transient",
+      "label": "Sudden acoustic transient",
+      "evidence_type": "measurement",
+      "measurements": {
+        "rms_rise_db": 6.61,
+        "peak_dbfs": -4.4
+      },
+      "explanation": "A rapid increase in recorded signal energy. Its cause is not determined; this does not establish a collision."
+    },
+    {
+      "id": "transient-3",
+      "start_s": 1.783375,
+      "end_s": 1.983375,
+      "peak_s": 1.863375,
+      "kind": "transient",
+      "label": "Sudden acoustic transient",
+      "evidence_type": "measurement",
+      "measurements": {
+        "rms_rise_db": 6.6,
+        "peak_dbfs": -2.51
+      },
+      "explanation": "A rapid increase in recorded signal energy. Its cause is not determined; this does not establish a collision."
+    },
+    {
+      "id": "transient-4",
+      "start_s": 4.116375,
+      "end_s": 4.316375,
+      "peak_s": 4.196375,
+      "kind": "transient",
+      "label": "Sudden acoustic transient",
+      "evidence_type": "measurement",
+      "measurements": {
+        "rms_rise_db": 6.44,
+        "peak_dbfs": -6.87
+      },
+      "explanation": "A rapid increase in recorded signal energy. Its cause is not determined; this does not establish a collision."
+    },
+    {
+      "id": "transient-5",
+      "start_s": 5.115125,
+      "end_s": 5.315125,
+      "peak_s": 5.195125,
+      "kind": "transient",
+      "label": "Sudden acoustic transient",
+      "evidence_type": "measurement",
+      "measurements": {
+        "rms_rise_db": 6.55,
+        "peak_dbfs": -2.1
+      },
+      "explanation": "A rapid increase in recorded signal energy. Its cause is not determined; this does not establish a collision."
+    },
+    {
+      "id": "class-2",
+      "start_s": 6.72,
+      "end_s": 12.48,
+      "peak_s": 10.56,
+      "kind": "sound_class",
+      "label": "Possible vehicle horn",
+      "evidence_type": "model_suggestion",
+      "measurements": {
+        "class_label": "vehicle horn",
+        "sound_group": "horn",
+        "model_score": 0.9960633516311646,
+        "mean_model_score": 0.709199534221129,
+        "onset_threshold": 0.15,
+        "active_frames": 10,
+        "source_labels": [
+          {
+            "label": "Vehicle horn, car horn, honking",
+            "peak_model_score": 0.9960633516311646
+          },
+          {
+            "label": "Air horn, truck horn",
+            "peak_model_score": 0.16487005352973938
+          }
+        ],
+        "timing_resolution_s": 0.48
+      },
+      "explanation": "Grouped YAMNet suggestion with approximate window boundaries. Scores are uncalibrated; the label does not establish source identity, a collision, or its cause."
+    },
+    {
+      "id": "class-3",
+      "start_s": 12.959999999999999,
+      "end_s": 17.76,
+      "peak_s": 13.92,
+      "kind": "sound_class",
+      "label": "Possible glass breaking sound",
+      "evidence_type": "model_suggestion",
+      "measurements": {
+        "class_label": "glass breaking sound",
+        "sound_group": "glass",
+        "model_score": 0.9138808250427246,
+        "mean_model_score": 0.6739360723230574,
+        "onset_threshold": 0.75,
+        "active_frames": 3,
+        "source_labels": [
+          {
+            "label": "Shatter",
+            "peak_model_score": 0.9138808250427246
+          }
+        ],
+        "timing_resolution_s": 0.48
+      },
+      "explanation": "Grouped YAMNet suggestion with approximate window boundaries. Scores are uncalibrated; the label does not establish source identity, a collision, or its cause."
+    },
+    {
+      "id": "transient-6",
+      "start_s": 13.487,
+      "end_s": 13.687,
+      "peak_s": 13.567,
+      "kind": "transient",
+      "label": "Sudden acoustic transient",
+      "evidence_type": "measurement",
+      "measurements": {
+        "rms_rise_db": 42.15,
+        "peak_dbfs": -4.99
+      },
+      "explanation": "A rapid increase in recorded signal energy. Its cause is not determined; this does not establish a collision."
+    },
+    {
+      "id": "transient-7",
+      "start_s": 14.2763125,
+      "end_s": 14.476312499999999,
+      "peak_s": 14.3563125,
+      "kind": "transient",
+      "label": "Sudden acoustic transient",
+      "evidence_type": "measurement",
+      "measurements": {
+        "rms_rise_db": 10.62,
+        "peak_dbfs": -9.25
+      },
+      "explanation": "A rapid increase in recorded signal energy. Its cause is not determined; this does not establish a collision."
+    },
+    {
+      "id": "transient-8",
+      "start_s": 15.7585,
+      "end_s": 15.958499999999999,
+      "peak_s": 15.8385,
+      "kind": "transient",
+      "label": "Sudden acoustic transient",
+      "evidence_type": "measurement",
+      "measurements": {
+        "rms_rise_db": 33.37,
+        "peak_dbfs": -2.21
+      },
+      "explanation": "A rapid increase in recorded signal energy. Its cause is not determined; this does not establish a collision."
+    },
+    {
+      "id": "transient-9",
+      "start_s": 17.63425,
+      "end_s": 17.83425,
+      "peak_s": 17.71425,
+      "kind": "transient",
+      "label": "Sudden acoustic transient",
+      "evidence_type": "measurement",
+      "measurements": {
+        "rms_rise_db": 37.79,
+        "peak_dbfs": -5.68
+      },
+      "explanation": "A rapid increase in recorded signal energy. Its cause is not determined; this does not establish a collision."
+    },
+    {
+      "id": "class-4",
+      "start_s": 18.72,
+      "end_s": 24.48,
+      "peak_s": 22.08,
+      "kind": "sound_class",
+      "label": "Possible siren",
+      "evidence_type": "model_suggestion",
+      "measurements": {
+        "class_label": "siren",
+        "sound_group": "siren",
+        "model_score": 0.9999968409538269,
+        "mean_model_score": 0.9750062769109552,
+        "onset_threshold": 0.75,
+        "active_frames": 11,
+        "source_labels": [
+          {
+            "label": "Siren",
+            "peak_model_score": 0.9999968409538269
+          },
+          {
+            "label": "Civil defense siren",
+            "peak_model_score": 0.9487074017524719
+          },
+          {
+            "label": "Fire engine, fire truck (siren)",
+            "peak_model_score": 0.017202433198690414
+          },
+          {
+            "label": "Ambulance (siren)",
+            "peak_model_score": 0.014450738206505775
+          },
+          {
+            "label": "Police car (siren)",
+            "peak_model_score": 0.009205535054206848
+          }
+        ],
+        "timing_resolution_s": 0.48
+      },
+      "explanation": "Grouped YAMNet suggestion with approximate window boundaries. Scores are uncalibrated; the label does not establish source identity, a collision, or its cause."
+    }
+  ],
+  "motion": {
+    "status": "insufficient_evidence",
+    "speed_m_s": null,
+    "speed_km_h": null,
+    "received_closest_approach_s": null,
+    "fit": null,
+    "reasons": [
+      "No sufficiently persistent, narrow tonal ridge in this window."
+    ],
+    "assumptions": {
+      "constant_emitted_tone_asserted": false,
+      "stationary_microphone_asserted": false,
+      "model": "single constant-speed straight-line source; stationary air; fixed emitted frequency",
+      "speed_of_sound_m_s": 343
+    },
+    "caveat": "A matching curve does not prove motion: a changing source pitch can imitate Doppler. No spatial direction, vehicle identity, or accident cause is inferred."
+  },
+  "findings": [
+    {
+      "id": "finding-1",
+      "text": "A sudden acoustic transient was measured at 1.03 s. Its cause is undetermined.",
+      "evidence_ids": [
+        "transient-1"
+      ],
+      "evidence_type": "measurement"
+    },
+    {
+      "id": "finding-2",
+      "text": "The sound classifier suggests engine sound between 0.96 and 6.72 s; this is unverified.",
+      "evidence_ids": [
+        "class-1"
+      ],
+      "evidence_type": "model_suggestion"
+    },
+    {
+      "id": "finding-3",
+      "text": "A sudden acoustic transient was measured at 1.70 s. Its cause is undetermined.",
+      "evidence_ids": [
+        "transient-2"
+      ],
+      "evidence_type": "measurement"
+    },
+    {
+      "id": "finding-4",
+      "text": "A sudden acoustic transient was measured at 1.86 s. Its cause is undetermined.",
+      "evidence_ids": [
+        "transient-3"
+      ],
+      "evidence_type": "measurement"
+    },
+    {
+      "id": "finding-5",
+      "text": "A sudden acoustic transient was measured at 4.20 s. Its cause is undetermined.",
+      "evidence_ids": [
+        "transient-4"
+      ],
+      "evidence_type": "measurement"
+    },
+    {
+      "id": "finding-6",
+      "text": "A sudden acoustic transient was measured at 5.20 s. Its cause is undetermined.",
+      "evidence_ids": [
+        "transient-5"
+      ],
+      "evidence_type": "measurement"
+    },
+    {
+      "id": "finding-7",
+      "text": "The sound classifier suggests vehicle horn between 6.72 and 12.48 s; this is unverified.",
+      "evidence_ids": [
+        "class-2"
+      ],
+      "evidence_type": "model_suggestion"
+    },
+    {
+      "id": "finding-8",
+      "text": "The sound classifier suggests glass breaking sound between 12.96 and 17.76 s; this is unverified.",
+      "evidence_ids": [
+        "class-3"
+      ],
+      "evidence_type": "model_suggestion"
+    },
+    {
+      "id": "finding-9",
+      "text": "A sudden acoustic transient was measured at 13.57 s. Its cause is undetermined.",
+      "evidence_ids": [
+        "transient-6"
+      ],
+      "evidence_type": "measurement"
+    },
+    {
+      "id": "finding-10",
+      "text": "A sudden acoustic transient was measured at 14.36 s. Its cause is undetermined.",
+      "evidence_ids": [
+        "transient-7"
+      ],
+      "evidence_type": "measurement"
+    },
+    {
+      "id": "finding-11",
+      "text": "A sudden acoustic transient was measured at 15.84 s. Its cause is undetermined.",
+      "evidence_ids": [
+        "transient-8"
+      ],
+      "evidence_type": "measurement"
+    },
+    {
+      "id": "finding-12",
+      "text": "A sudden acoustic transient was measured at 17.71 s. Its cause is undetermined.",
+      "evidence_ids": [
+        "transient-9"
+      ],
+      "evidence_type": "measurement"
+    },
+    {
+      "id": "finding-13",
+      "text": "The sound classifier suggests siren between 18.72 and 24.48 s; this is unverified.",
+      "evidence_ids": [
+        "class-4"
+      ],
+      "evidence_type": "model_suggestion"
+    }
+  ],
+  "classifier": {
+    "status": "enabled",
+    "model": "Google YAMNet v1 / AudioSet",
+    "top_classes": [
+      {
+        "label": "Alarm",
+        "mean_model_score": 0.21784935891628265
+      },
+      {
+        "label": "Siren",
+        "mean_model_score": 0.21357586979866028
+      },
+      {
+        "label": "Civil defense siren",
+        "mean_model_score": 0.17907589673995972
+      },
+      {
+        "label": "Glass",
+        "mean_model_score": 0.16528111696243286
+      },
+      {
+        "label": "Vehicle horn, car horn, honking",
+        "mean_model_score": 0.1513781100511551
+      }
+    ],
+    "score_meaning": "Uncalibrated model scores, not probabilities that a real-world event occurred.",
+    "window_s": 0.96,
+    "hop_s": 0.48,
+    "detector_version": "esc50-dev-v1",
+    "detector_profile_hash": "90ecdd114d9161d0",
+    "timing_caveat": "Patch-level suggestions have approximate boundaries; no event-onset accuracy has been established.",
+    "suppressed_broad_labels": 0,
+    "omitted_event_count": 0
+  },
+  "assets": {
+    "audio_url": "/analyses/a1245561f7be4e63eb317620c0a205af/assets/playback.wav",
+    "waveform_url": "/analyses/a1245561f7be4e63eb317620c0a205af/assets/waveform.json",
+    "spectrogram_url": "/analyses/a1245561f7be4e63eb317620c0a205af/assets/spectrogram.png",
+    "track_url": "/analyses/a1245561f7be4e63eb317620c0a205af/assets/track.json",
+    "report_url": "/analyses/a1245561f7be4e63eb317620c0a205af/assets/report.md",
+    "original_url": "/analyses/a1245561f7be4e63eb317620c0a205af/assets/original",
+    "sound_scores_url": "/analyses/a1245561f7be4e63eb317620c0a205af/assets/sound-scores.json"
+  },
+  "warnings": [],
+  "limitations": [
+    "Experimental acoustic analysis, not validated accident reconstruction or forensic certification.",
+    "No spatial path, compass direction, source identity, or accident causation is determined.",
+    "Pitch changes can be caused by changing RPM/source pitch, echoes, multiple sources, or microphone motion.",
+    "Conditional speeds assume a constant emitted tone, stationary microphone, constant-speed straight-line pass, and the configured sound speed.",
+    "Model scores and fit residuals are not calibrated confidence probabilities. Missing detections do not establish that an event did not occur.",
+    "All displayed timestamps refer to the first decoded audio sample in playback.wav. Add original_audio_start_s to align with the source media timestamps."
+  ],
+  "processing_seconds": 0.41
+}

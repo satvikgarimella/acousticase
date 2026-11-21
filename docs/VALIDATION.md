@@ -4,7 +4,7 @@ Local run on 2026-11-21, Python 3.12.14 / macOS arm64.
 
 ## Automated tests
 
-15 tests passed. Negative controls: stationary tone, white noise, silence, upward chirp, and downward linear chirp. No speed was reported for those controls. API tests cover original-byte preservation, duration/size limits, caching, invalid input, and evidence references.
+25 tests passed after the ML update. Negative controls: stationary tone, white noise, silence, upward chirp, and downward linear chirp. No speed was reported for those controls. API tests cover original-byte preservation, duration/size limits, caching, invalid input, and evidence references. Additional tests cover label mapping, score hysteresis, distinct/simultaneous events, clipping timestamps, explicit event caps, profile cache hashes, source-split leakage, evaluation counts, and portable model inference.
 
 ## Independent synthetic pass-by checks
 
@@ -22,7 +22,17 @@ The supplied screen recording decoded and processed successfully (106.58 seconds
 
 ## Remaining evaluation
 
-No held-out real vehicle recordings with independently measured speed have been evaluated. No collision-cause inference, multiple-source tracking, calibrated probabilities, or generative report model is implemented. Docker deployment has not been exercised.
+No held-out real vehicle recordings with independently measured speed have been evaluated. No collision-cause inference, multiple-source tracking, calibrated probabilities, or generative report model is implemented. Docker deployment has not been exercised. See [the ML model card](ML_MODEL_CARD.md) for the new sound-classification benchmark and its separate limits.
+
+## ML update
+
+320 ESC-50 recordings were split into 192 training, 64 validation, and 64 test clips using the dataset's source-separated folds. The trained eight-class linear head labeled 61/64 test clips correctly, versus 58/64 for a grouped YAMNet baseline. It is a separate experimental clip classifier, not the API's event detector.
+
+For four target sound groups, the updated event detector's clip-presence macro F1 was 0.734 versus 0.675 originally. Correct detections rose from 18/32 to 24/32; false positives rose from 1 to 4 across 224 negative class/clip decisions. Glass recall declined to 1/8. No event-boundary accuracy was measured.
+
+Live model checks passed: 135-patch chunked/whole-waveform equivalence on 65 seconds, five short-clip boundary cases, silence with zero events, and real-model API upload/poll/results/score asset/evidence links. The full reproducible report, per-class results, limits, and sources are in [ML_MODEL_CARD.md](ML_MODEL_CARD.md).
+
+Both demos also passed against a live HTTP server on pipeline 0.2.0. The synthetic speed remained 72.008 km/h. The constructed 25-second sound collage produced engine, horn, glass, and siren suggestions, with no speed estimate; processing took 0.410 seconds after model warm-up in this local run. This curated example is not included in evaluation metrics.
 
 ## Live HTTP smoke test
 

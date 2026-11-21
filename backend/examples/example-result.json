@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "pipeline_version": "0.1.0",
-  "analysis_id": "ae6760e62eccb586d1a093d94e5ccede",
+  "pipeline_version": "0.2.0",
+  "analysis_id": "a274321777abdc203b68141ff1e3141f",
   "status": "complete",
   "recording": {
     "filename": "simulated-pass-by.wav",
@@ -1725,15 +1725,21 @@
     ],
     "score_meaning": "Uncalibrated model scores, not probabilities that a real-world event occurred.",
     "window_s": 0.96,
-    "hop_s": 0.48
+    "hop_s": 0.48,
+    "detector_version": "esc50-dev-v1",
+    "detector_profile_hash": "90ecdd114d9161d0",
+    "timing_caveat": "Patch-level suggestions have approximate boundaries; no event-onset accuracy has been established.",
+    "suppressed_broad_labels": 0,
+    "omitted_event_count": 0
   },
   "assets": {
-    "audio_url": "/analyses/ae6760e62eccb586d1a093d94e5ccede/assets/playback.wav",
-    "waveform_url": "/analyses/ae6760e62eccb586d1a093d94e5ccede/assets/waveform.json",
-    "spectrogram_url": "/analyses/ae6760e62eccb586d1a093d94e5ccede/assets/spectrogram.png",
-    "track_url": "/analyses/ae6760e62eccb586d1a093d94e5ccede/assets/track.json",
-    "report_url": "/analyses/ae6760e62eccb586d1a093d94e5ccede/assets/report.md",
-    "original_url": "/analyses/ae6760e62eccb586d1a093d94e5ccede/assets/original"
+    "audio_url": "/analyses/a274321777abdc203b68141ff1e3141f/assets/playback.wav",
+    "waveform_url": "/analyses/a274321777abdc203b68141ff1e3141f/assets/waveform.json",
+    "spectrogram_url": "/analyses/a274321777abdc203b68141ff1e3141f/assets/spectrogram.png",
+    "track_url": "/analyses/a274321777abdc203b68141ff1e3141f/assets/track.json",
+    "report_url": "/analyses/a274321777abdc203b68141ff1e3141f/assets/report.md",
+    "original_url": "/analyses/a274321777abdc203b68141ff1e3141f/assets/original",
+    "sound_scores_url": "/analyses/a274321777abdc203b68141ff1e3141f/assets/sound-scores.json"
   },
   "warnings": [],
   "limitations": [
@@ -1744,5 +1750,5 @@
     "Model scores and fit residuals are not calibrated confidence probabilities. Missing detections do not establish that an event did not occur.",
     "All displayed timestamps refer to the first decoded audio sample in playback.wav. Add original_audio_start_s to align with the source media timestamps."
   ],
-  "processing_seconds": 11.512
+  "processing_seconds": 2.591
 }
