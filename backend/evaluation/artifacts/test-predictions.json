@@ -1,0 +1,386 @@
+[
+  {
+    "filename": "5-117118-A-42.wav",
+    "true_label": "siren",
+    "baseline_label": "siren",
+    "trained_label": "siren"
+  },
+  {
+    "filename": "5-117120-A-42.wav",
+    "true_label": "siren",
+    "baseline_label": "siren",
+    "trained_label": "siren"
+  },
+  {
+    "filename": "5-117122-A-42.wav",
+    "true_label": "siren",
+    "baseline_label": "siren",
+    "trained_label": "siren"
+  },
+  {
+    "filename": "5-117773-A-16.wav",
+    "true_label": "wind",
+    "baseline_label": "wind",
+    "trained_label": "wind"
+  },
+  {
+    "filename": "5-133989-A-42.wav",
+    "true_label": "siren",
+    "baseline_label": "siren",
+    "trained_label": "siren"
+  },
+  {
+    "filename": "5-133989-B-42.wav",
+    "true_label": "siren",
+    "baseline_label": "siren",
+    "trained_label": "siren"
+  },
+  {
+    "filename": "5-150409-A-42.wav",
+    "true_label": "siren",
+    "baseline_label": "siren",
+    "trained_label": "siren"
+  },
+  {
+    "filename": "5-157204-A-16.wav",
+    "true_label": "wind",
+    "baseline_label": "engine",
+    "trained_label": "wind"
+  },
+  {
+    "filename": "5-157204-B-16.wav",
+    "true_label": "wind",
+    "baseline_label": "siren",
+    "trained_label": "wind"
+  },
+  {
+    "filename": "5-160551-A-42.wav",
+    "true_label": "siren",
+    "baseline_label": "siren",
+    "trained_label": "siren"
+  },
+  {
+    "filename": "5-179496-A-16.wav",
+    "true_label": "wind",
+    "baseline_label": "car_horn",
+    "trained_label": "wind"
+  },
+  {
+    "filename": "5-179496-B-16.wav",
+    "true_label": "wind",
+    "baseline_label": "engine",
+    "trained_label": "wind"
+  },
+  {
+    "filename": "5-179860-A-43.wav",
+    "true_label": "car_horn",
+    "baseline_label": "car_horn",
+    "trained_label": "car_horn"
+  },
+  {
+    "filename": "5-179863-A-43.wav",
+    "true_label": "car_horn",
+    "baseline_label": "car_horn",
+    "trained_label": "car_horn"
+  },
+  {
+    "filename": "5-179865-A-43.wav",
+    "true_label": "car_horn",
+    "baseline_label": "car_horn",
+    "trained_label": "car_horn"
+  },
+  {
+    "filename": "5-179866-A-43.wav",
+    "true_label": "car_horn",
+    "baseline_label": "car_horn",
+    "trained_label": "car_horn"
+  },
+  {
+    "filename": "5-179868-A-43.wav",
+    "true_label": "car_horn",
+    "baseline_label": "car_horn",
+    "trained_label": "car_horn"
+  },
+  {
+    "filename": "5-180156-A-43.wav",
+    "true_label": "car_horn",
+    "baseline_label": "car_horn",
+    "trained_label": "car_horn"
+  },
+  {
+    "filename": "5-180156-B-43.wav",
+    "true_label": "car_horn",
+    "baseline_label": "car_horn",
+    "trained_label": "car_horn"
+  },
+  {
+    "filename": "5-180156-C-43.wav",
+    "true_label": "car_horn",
+    "baseline_label": "car_horn",
+    "trained_label": "car_horn"
+  },
+  {
+    "filename": "5-181766-A-10.wav",
+    "true_label": "rain",
+    "baseline_label": "rain",
+    "trained_label": "rain"
+  },
+  {
+    "filename": "5-184323-A-42.wav",
+    "true_label": "siren",
+    "baseline_label": "siren",
+    "trained_label": "siren"
+  },
+  {
+    "filename": "5-188655-A-10.wav",
+    "true_label": "rain",
+    "baseline_label": "rain",
+    "trained_label": "rain"
+  },
+  {
+    "filename": "5-193339-A-10.wav",
+    "true_label": "rain",
+    "baseline_label": "rain",
+    "trained_label": "rain"
+  },
+  {
+    "filename": "5-194892-A-10.wav",
+    "true_label": "rain",
+    "baseline_label": "rain",
+    "trained_label": "rain"
+  },
+  {
+    "filename": "5-195710-A-10.wav",
+    "true_label": "rain",
+    "baseline_label": "rain",
+    "trained_label": "wind"
+  },
+  {
+    "filename": "5-198321-A-10.wav",
+    "true_label": "rain",
+    "baseline_label": "rain",
+    "trained_label": "rain"
+  },
+  {
+    "filename": "5-202898-A-10.wav",
+    "true_label": "rain",
+    "baseline_label": "rain",
+    "trained_label": "rain"
+  },
+  {
+    "filename": "5-203128-A-0.wav",
+    "true_label": "dog",
+    "baseline_label": "dog",
+    "trained_label": "dog"
+  },
+  {
+    "filename": "5-203128-B-0.wav",
+    "true_label": "dog",
+    "baseline_label": "dog",
+    "trained_label": "dog"
+  },
+  {
+    "filename": "5-203739-A-10.wav",
+    "true_label": "rain",
+    "baseline_label": "rain",
+    "trained_label": "rain"
+  },
+  {
+    "filename": "5-208030-A-0.wav",
+    "true_label": "dog",
+    "baseline_label": "dog",
+    "trained_label": "dog"
+  },
+  {
+    "filename": "5-209992-A-44.wav",
+    "true_label": "engine",
+    "baseline_label": "engine",
+    "trained_label": "engine"
+  },
+  {
+    "filename": "5-209992-B-44.wav",
+    "true_label": "engine",
+    "baseline_label": "engine",
+    "trained_label": "engine"
+  },
+  {
+    "filename": "5-212454-A-0.wav",
+    "true_label": "dog",
+    "baseline_label": "dog",
+    "trained_label": "dog"
+  },
+  {
+    "filename": "5-213855-A-0.wav",
+    "true_label": "dog",
+    "baseline_label": "dog",
+    "trained_label": "dog"
+  },
+  {
+    "filename": "5-217158-A-0.wav",
+    "true_label": "dog",
+    "baseline_label": "dog",
+    "trained_label": "dog"
+  },
+  {
+    "filename": "5-217186-A-16.wav",
+    "true_label": "wind",
+    "baseline_label": "wind",
+    "trained_label": "wind"
+  },
+  {
+    "filename": "5-217186-B-16.wav",
+    "true_label": "wind",
+    "baseline_label": "siren",
+    "trained_label": "wind"
+  },
+  {
+    "filename": "5-217186-C-16.wav",
+    "true_label": "wind",
+    "baseline_label": "siren",
+    "trained_label": "wind"
+  },
+  {
+    "filename": "5-221528-A-39.wav",
+    "true_label": "glass_breaking",
+    "baseline_label": "glass_breaking",
+    "trained_label": "glass_breaking"
+  },
+  {
+    "filename": "5-221529-A-39.wav",
+    "true_label": "glass_breaking",
+    "baseline_label": "glass_breaking",
+    "trained_label": "glass_breaking"
+  },
+  {
+    "filename": "5-231762-A-0.wav",
+    "true_label": "dog",
+    "baseline_label": "dog",
+    "trained_label": "dog"
+  },
+  {
+    "filename": "5-232272-A-44.wav",
+    "true_label": "engine",
+    "baseline_label": "engine",
+    "trained_label": "engine"
+  },
+  {
+    "filename": "5-233605-A-39.wav",
+    "true_label": "glass_breaking",
+    "baseline_label": "glass_breaking",
+    "trained_label": "glass_breaking"
+  },
+  {
+    "filename": "5-233607-A-39.wav",
+    "true_label": "glass_breaking",
+    "baseline_label": "glass_breaking",
+    "trained_label": "glass_breaking"
+  },
+  {
+    "filename": "5-234263-A-25.wav",
+    "true_label": "footsteps",
+    "baseline_label": "footsteps",
+    "trained_label": "glass_breaking"
+  },
+  {
+    "filename": "5-234855-A-25.wav",
+    "true_label": "footsteps",
+    "baseline_label": "footsteps",
+    "trained_label": "footsteps"
+  },
+  {
+    "filename": "5-235507-A-44.wav",
+    "true_label": "engine",
+    "baseline_label": "engine",
+    "trained_label": "engine"
+  },
+  {
+    "filename": "5-240671-A-44.wav",
+    "true_label": "engine",
+    "baseline_label": "engine",
+    "trained_label": "engine"
+  },
+  {
+    "filename": "5-243025-A-25.wav",
+    "true_label": "footsteps",
+    "baseline_label": "footsteps",
+    "trained_label": "footsteps"
+  },
+  {
+    "filename": "5-243773-A-44.wav",
+    "true_label": "engine",
+    "baseline_label": "engine",
+    "trained_label": "engine"
+  },
+  {
+    "filename": "5-243773-B-44.wav",
+    "true_label": "engine",
+    "baseline_label": "engine",
+    "trained_label": "engine"
+  },
+  {
+    "filename": "5-243783-A-44.wav",
+    "true_label": "engine",
+    "baseline_label": "engine",
+    "trained_label": "engine"
+  },
+  {
+    "filename": "5-244310-A-25.wav",
+    "true_label": "footsteps",
+    "baseline_label": "footsteps",
+    "trained_label": "footsteps"
+  },
+  {
+    "filename": "5-257642-A-39.wav",
+    "true_label": "glass_breaking",
+    "baseline_label": "glass_breaking",
+    "trained_label": "glass_breaking"
+  },
+  {
+    "filename": "5-260432-A-39.wav",
+    "true_label": "glass_breaking",
+    "baseline_label": "glass_breaking",
+    "trained_label": "glass_breaking"
+  },
+  {
+    "filename": "5-260433-A-39.wav",
+    "true_label": "glass_breaking",
+    "baseline_label": "glass_breaking",
+    "trained_label": "glass_breaking"
+  },
+  {
+    "filename": "5-260434-A-39.wav",
+    "true_label": "glass_breaking",
+    "baseline_label": "glass_breaking",
+    "trained_label": "glass_breaking"
+  },
+  {
+    "filename": "5-263490-A-25.wav",
+    "true_label": "footsteps",
+    "baseline_label": "footsteps",
+    "trained_label": "footsteps"
+  },
+  {
+    "filename": "5-263491-A-25.wav",
+    "true_label": "footsteps",
+    "baseline_label": "footsteps",
+    "trained_label": "footsteps"
+  },
+  {
+    "filename": "5-263501-A-25.wav",
+    "true_label": "footsteps",
+    "baseline_label": "footsteps",
+    "trained_label": "footsteps"
+  },
+  {
+    "filename": "5-51149-A-25.wav",
+    "true_label": "footsteps",
+    "baseline_label": "footsteps",
+    "trained_label": "glass_breaking"
+  },
+  {
+    "filename": "5-9032-A-0.wav",
+    "true_label": "dog",
+    "baseline_label": "dog",
+    "trained_label": "dog"
+  }
+]

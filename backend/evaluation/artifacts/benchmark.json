@@ -1,0 +1,1297 @@
+{
+  "dataset": {
+    "repository": "https://github.com/karolpiczak/ESC-50",
+    "revision": "33c8ce9eb2cf0b1c2f8bcf322eb349b6be34dbb6",
+    "categories": [
+      "car_horn",
+      "siren",
+      "engine",
+      "glass_breaking",
+      "rain",
+      "wind",
+      "footsteps",
+      "dog"
+    ],
+    "train_folds": [
+      1,
+      2,
+      3
+    ],
+    "validation_folds": [
+      4
+    ],
+    "test_folds": [
+      5
+    ]
+  },
+  "manifest_sha256": "d8caea6dfa4b63931afcaa81e059f6e70aa0e13ee775d1af453a897ffb671cc9",
+  "feature_provenance": {
+    "manifest_sha256": "d8caea6dfa4b63931afcaa81e059f6e70aa0e13ee775d1af453a897ffb671cc9",
+    "extractor": "Google YAMNet v1, frozen",
+    "base_model_sha256": "13c3308955bbfaef262f175ac9c40e47b134573a93984f009220dd7cc12a1744",
+    "pooling": "mean and standard deviation over frames",
+    "feature_dimension": 2048,
+    "seconds": 0.093
+  },
+  "split_counts": {
+    "train": 192,
+    "validation": 64,
+    "test": 64
+  },
+  "training": {
+    "method": "Frozen YAMNet mean/std embeddings + StandardScaler + multinomial logistic regression",
+    "scikit_learn_version": "1.9.1",
+    "trials": [
+      {
+        "C": 0.01,
+        "validation_macro_f1": 0.9525676937441643
+      },
+      {
+        "C": 0.1,
+        "validation_macro_f1": 0.9525676937441643
+      },
+      {
+        "C": 1.0,
+        "validation_macro_f1": 0.9368814192343604
+      },
+      {
+        "C": 10.0,
+        "validation_macro_f1": 0.9383864071944568
+      }
+    ],
+    "selected_C": 0.01,
+    "model_sha256": "b83f8721cb17fac7682d67864dbdbd9731dd270a5cea0401e17b2baf402ff1e0"
+  },
+  "closed_set_classification": {
+    "validation": {
+      "pretrained_grouped_baseline": {
+        "accuracy": 0.875,
+        "macro_f1": 0.8750127323656736,
+        "classes": [
+          "car_horn",
+          "dog",
+          "engine",
+          "footsteps",
+          "glass_breaking",
+          "rain",
+          "siren",
+          "wind"
+        ],
+        "confusion_matrix": [
+          [
+            6,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            7,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            7,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            8,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            4
+          ]
+        ],
+        "per_class": {
+          "car_horn": {
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1-score": 0.8571428571428571,
+            "support": 8.0
+          },
+          "dog": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 8.0
+          },
+          "engine": {
+            "precision": 1.0,
+            "recall": 0.875,
+            "f1-score": 0.9333333333333333,
+            "support": 8.0
+          },
+          "footsteps": {
+            "precision": 0.8888888888888888,
+            "recall": 1.0,
+            "f1-score": 0.9411764705882353,
+            "support": 8.0
+          },
+          "glass_breaking": {
+            "precision": 1.0,
+            "recall": 0.875,
+            "f1-score": 0.9333333333333333,
+            "support": 8.0
+          },
+          "rain": {
+            "precision": 0.8888888888888888,
+            "recall": 1.0,
+            "f1-score": 0.9411764705882353,
+            "support": 8.0
+          },
+          "siren": {
+            "precision": 0.5714285714285714,
+            "recall": 1.0,
+            "f1-score": 0.7272727272727273,
+            "support": 8.0
+          },
+          "wind": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1-score": 0.6666666666666666,
+            "support": 8.0
+          },
+          "accuracy": 0.875,
+          "macro avg": {
+            "precision": 0.9186507936507937,
+            "recall": 0.875,
+            "f1-score": 0.8750127323656736,
+            "support": 64.0
+          },
+          "weighted avg": {
+            "precision": 0.9186507936507937,
+            "recall": 0.875,
+            "f1-score": 0.8750127323656736,
+            "support": 64.0
+          }
+        }
+      },
+      "trained_linear_head": {
+        "accuracy": 0.953125,
+        "macro_f1": 0.9525676937441643,
+        "classes": [
+          "car_horn",
+          "dog",
+          "engine",
+          "footsteps",
+          "glass_breaking",
+          "rain",
+          "siren",
+          "wind"
+        ],
+        "confusion_matrix": [
+          [
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            7,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            8,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            8
+          ]
+        ],
+        "per_class": {
+          "car_horn": {
+            "precision": 0.8,
+            "recall": 1.0,
+            "f1-score": 0.8888888888888888,
+            "support": 8.0
+          },
+          "dog": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 8.0
+          },
+          "engine": {
+            "precision": 1.0,
+            "recall": 0.875,
+            "f1-score": 0.9333333333333333,
+            "support": 8.0
+          },
+          "footsteps": {
+            "precision": 0.8888888888888888,
+            "recall": 1.0,
+            "f1-score": 0.9411764705882353,
+            "support": 8.0
+          },
+          "glass_breaking": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 8.0
+          },
+          "rain": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 8.0
+          },
+          "siren": {
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1-score": 0.8571428571428571,
+            "support": 8.0
+          },
+          "wind": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 8.0
+          },
+          "accuracy": 0.953125,
+          "macro avg": {
+            "precision": 0.9611111111111111,
+            "recall": 0.953125,
+            "f1-score": 0.9525676937441643,
+            "support": 64.0
+          },
+          "weighted avg": {
+            "precision": 0.9611111111111111,
+            "recall": 0.953125,
+            "f1-score": 0.9525676937441643,
+            "support": 64.0
+          }
+        }
+      }
+    },
+    "test": {
+      "pretrained_grouped_baseline": {
+        "accuracy": 0.90625,
+        "macro_f1": 0.8840213278293774,
+        "classes": [
+          "car_horn",
+          "dog",
+          "engine",
+          "footsteps",
+          "glass_breaking",
+          "rain",
+          "siren",
+          "wind"
+        ],
+        "confusion_matrix": [
+          [
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            8,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            1,
+            0,
+            2,
+            0,
+            0,
+            0,
+            3,
+            2
+          ]
+        ],
+        "per_class": {
+          "car_horn": {
+            "precision": 0.8888888888888888,
+            "recall": 1.0,
+            "f1-score": 0.9411764705882353,
+            "support": 8.0
+          },
+          "dog": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 8.0
+          },
+          "engine": {
+            "precision": 0.8,
+            "recall": 1.0,
+            "f1-score": 0.8888888888888888,
+            "support": 8.0
+          },
+          "footsteps": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 8.0
+          },
+          "glass_breaking": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 8.0
+          },
+          "rain": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 8.0
+          },
+          "siren": {
+            "precision": 0.7272727272727273,
+            "recall": 1.0,
+            "f1-score": 0.8421052631578947,
+            "support": 8.0
+          },
+          "wind": {
+            "precision": 1.0,
+            "recall": 0.25,
+            "f1-score": 0.4,
+            "support": 8.0
+          },
+          "accuracy": 0.90625,
+          "macro avg": {
+            "precision": 0.9270202020202021,
+            "recall": 0.90625,
+            "f1-score": 0.8840213278293774,
+            "support": 64.0
+          },
+          "weighted avg": {
+            "precision": 0.9270202020202021,
+            "recall": 0.90625,
+            "f1-score": 0.8840213278293774,
+            "support": 64.0
+          }
+        }
+      },
+      "trained_linear_head": {
+        "accuracy": 0.953125,
+        "macro_f1": 0.9525676937441643,
+        "classes": [
+          "car_horn",
+          "dog",
+          "engine",
+          "footsteps",
+          "glass_breaking",
+          "rain",
+          "siren",
+          "wind"
+        ],
+        "confusion_matrix": [
+          [
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            6,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            7,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            8
+          ]
+        ],
+        "per_class": {
+          "car_horn": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 8.0
+          },
+          "dog": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 8.0
+          },
+          "engine": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 8.0
+          },
+          "footsteps": {
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1-score": 0.8571428571428571,
+            "support": 8.0
+          },
+          "glass_breaking": {
+            "precision": 0.8,
+            "recall": 1.0,
+            "f1-score": 0.8888888888888888,
+            "support": 8.0
+          },
+          "rain": {
+            "precision": 1.0,
+            "recall": 0.875,
+            "f1-score": 0.9333333333333333,
+            "support": 8.0
+          },
+          "siren": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 8.0
+          },
+          "wind": {
+            "precision": 0.8888888888888888,
+            "recall": 1.0,
+            "f1-score": 0.9411764705882353,
+            "support": 8.0
+          },
+          "accuracy": 0.953125,
+          "macro avg": {
+            "precision": 0.9611111111111111,
+            "recall": 0.953125,
+            "f1-score": 0.9525676937441643,
+            "support": 64.0
+          },
+          "weighted avg": {
+            "precision": 0.9611111111111111,
+            "recall": 0.953125,
+            "f1-score": 0.9525676937441643,
+            "support": 64.0
+          }
+        }
+      }
+    }
+  },
+  "clip_presence_detection": {
+    "validation": {
+      "legacy_v0_1": {
+        "per_class": {
+          "horn": {
+            "tp": 6,
+            "fp": 1,
+            "fn": 2,
+            "tn": 55,
+            "precision": 0.8571428571428571,
+            "recall": 0.75,
+            "f1": 0.7999999999999999
+          },
+          "siren": {
+            "tp": 7,
+            "fp": 5,
+            "fn": 1,
+            "tn": 51,
+            "precision": 0.5833333333333334,
+            "recall": 0.875,
+            "f1": 0.7000000000000001
+          },
+          "engine": {
+            "tp": 6,
+            "fp": 0,
+            "fn": 2,
+            "tn": 56,
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1": 0.8571428571428571
+          },
+          "glass": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 5,
+            "tn": 56,
+            "precision": 1.0,
+            "recall": 0.375,
+            "f1": 0.5454545454545454
+          }
+        },
+        "macro_f1": 0.7256493506493507,
+        "total_false_positives": 6,
+        "total_true_positives": 22
+      },
+      "grouped_initial": {
+        "per_class": {
+          "horn": {
+            "tp": 6,
+            "fp": 1,
+            "fn": 2,
+            "tn": 55,
+            "precision": 0.8571428571428571,
+            "recall": 0.75,
+            "f1": 0.7999999999999999
+          },
+          "siren": {
+            "tp": 7,
+            "fp": 5,
+            "fn": 1,
+            "tn": 51,
+            "precision": 0.5833333333333334,
+            "recall": 0.875,
+            "f1": 0.7000000000000001
+          },
+          "engine": {
+            "tp": 6,
+            "fp": 0,
+            "fn": 2,
+            "tn": 56,
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1": 0.8571428571428571
+          },
+          "glass": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 5,
+            "tn": 56,
+            "precision": 1.0,
+            "recall": 0.375,
+            "f1": 0.5454545454545454
+          }
+        },
+        "macro_f1": 0.7256493506493507,
+        "total_false_positives": 6,
+        "total_true_positives": 22
+      },
+      "grouped_tuned": {
+        "per_class": {
+          "horn": {
+            "tp": 8,
+            "fp": 1,
+            "fn": 0,
+            "tn": 55,
+            "precision": 0.8888888888888888,
+            "recall": 1.0,
+            "f1": 0.9411764705882353
+          },
+          "siren": {
+            "tp": 5,
+            "fp": 2,
+            "fn": 3,
+            "tn": 54,
+            "precision": 0.7142857142857143,
+            "recall": 0.625,
+            "f1": 0.6666666666666666
+          },
+          "engine": {
+            "tp": 7,
+            "fp": 0,
+            "fn": 1,
+            "tn": 56,
+            "precision": 1.0,
+            "recall": 0.875,
+            "f1": 0.9333333333333333
+          },
+          "glass": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 5,
+            "tn": 56,
+            "precision": 1.0,
+            "recall": 0.375,
+            "f1": 0.5454545454545454
+          }
+        },
+        "macro_f1": 0.7716577540106951,
+        "total_false_positives": 3,
+        "total_true_positives": 23
+      }
+    },
+    "test": {
+      "legacy_v0_1": {
+        "per_class": {
+          "horn": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 4,
+            "tn": 56,
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6666666666666666
+          },
+          "siren": {
+            "tp": 8,
+            "fp": 1,
+            "fn": 0,
+            "tn": 55,
+            "precision": 0.8888888888888888,
+            "recall": 1.0,
+            "f1": 0.9411764705882353
+          },
+          "engine": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 5,
+            "tn": 56,
+            "precision": 1.0,
+            "recall": 0.375,
+            "f1": 0.5454545454545454
+          },
+          "glass": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 5,
+            "tn": 56,
+            "precision": 1.0,
+            "recall": 0.375,
+            "f1": 0.5454545454545454
+          }
+        },
+        "macro_f1": 0.6746880570409982,
+        "total_false_positives": 1,
+        "total_true_positives": 18
+      },
+      "grouped_initial": {
+        "per_class": {
+          "horn": {
+            "tp": 7,
+            "fp": 1,
+            "fn": 1,
+            "tn": 55,
+            "precision": 0.875,
+            "recall": 0.875,
+            "f1": 0.875
+          },
+          "siren": {
+            "tp": 8,
+            "fp": 2,
+            "fn": 0,
+            "tn": 54,
+            "precision": 0.8,
+            "recall": 1.0,
+            "f1": 0.888888888888889
+          },
+          "engine": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 5,
+            "tn": 56,
+            "precision": 1.0,
+            "recall": 0.375,
+            "f1": 0.5454545454545454
+          },
+          "glass": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 5,
+            "tn": 56,
+            "precision": 1.0,
+            "recall": 0.375,
+            "f1": 0.5454545454545454
+          }
+        },
+        "macro_f1": 0.7136994949494949,
+        "total_false_positives": 3,
+        "total_true_positives": 21
+      },
+      "grouped_tuned": {
+        "per_class": {
+          "horn": {
+            "tp": 8,
+            "fp": 2,
+            "fn": 0,
+            "tn": 54,
+            "precision": 0.8,
+            "recall": 1.0,
+            "f1": 0.888888888888889
+          },
+          "siren": {
+            "tp": 8,
+            "fp": 0,
+            "fn": 0,
+            "tn": 56,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "engine": {
+            "tp": 7,
+            "fp": 2,
+            "fn": 1,
+            "tn": 54,
+            "precision": 0.7777777777777778,
+            "recall": 0.875,
+            "f1": 0.823529411764706
+          },
+          "glass": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 7,
+            "tn": 56,
+            "precision": 1.0,
+            "recall": 0.125,
+            "f1": 0.2222222222222222
+          }
+        },
+        "macro_f1": 0.7336601307189543,
+        "total_false_positives": 4,
+        "total_true_positives": 24
+      }
+    }
+  },
+  "threshold_selection": {
+    "horn": [
+      {
+        "threshold": 0.15,
+        "f0_5": 0.9090909090909091,
+        "tp": 8,
+        "fp": 1,
+        "fn": 0,
+        "tn": 55,
+        "precision": 0.8888888888888888,
+        "recall": 1.0,
+        "f1": 0.9411764705882353
+      },
+      {
+        "threshold": 0.25,
+        "f0_5": 0.8333333333333334,
+        "tp": 6,
+        "fp": 1,
+        "fn": 2,
+        "tn": 55,
+        "precision": 0.8571428571428571,
+        "recall": 0.75,
+        "f1": 0.7999999999999999
+      },
+      {
+        "threshold": 0.35,
+        "f0_5": 0.8333333333333334,
+        "tp": 6,
+        "fp": 1,
+        "fn": 2,
+        "tn": 55,
+        "precision": 0.8571428571428571,
+        "recall": 0.75,
+        "f1": 0.7999999999999999
+      },
+      {
+        "threshold": 0.45,
+        "f0_5": 0.8333333333333334,
+        "tp": 6,
+        "fp": 1,
+        "fn": 2,
+        "tn": 55,
+        "precision": 0.8571428571428571,
+        "recall": 0.75,
+        "f1": 0.7999999999999999
+      },
+      {
+        "threshold": 0.55,
+        "f0_5": 0.8333333333333334,
+        "tp": 6,
+        "fp": 1,
+        "fn": 2,
+        "tn": 55,
+        "precision": 0.8571428571428571,
+        "recall": 0.75,
+        "f1": 0.7999999999999999
+      },
+      {
+        "threshold": 0.65,
+        "f0_5": 0.8333333333333334,
+        "tp": 6,
+        "fp": 1,
+        "fn": 2,
+        "tn": 55,
+        "precision": 0.8571428571428571,
+        "recall": 0.75,
+        "f1": 0.7999999999999999
+      },
+      {
+        "threshold": 0.75,
+        "f0_5": 0.78125,
+        "tp": 5,
+        "fp": 1,
+        "fn": 3,
+        "tn": 55,
+        "precision": 0.8333333333333334,
+        "recall": 0.625,
+        "f1": 0.7142857142857143
+      }
+    ],
+    "siren": [
+      {
+        "threshold": 0.15,
+        "f0_5": 0.625,
+        "tp": 8,
+        "fp": 6,
+        "fn": 0,
+        "tn": 50,
+        "precision": 0.5714285714285714,
+        "recall": 1.0,
+        "f1": 0.7272727272727273
+      },
+      {
+        "threshold": 0.25,
+        "f0_5": 0.6250000000000001,
+        "tp": 7,
+        "fp": 5,
+        "fn": 1,
+        "tn": 51,
+        "precision": 0.5833333333333334,
+        "recall": 0.875,
+        "f1": 0.7000000000000001
+      },
+      {
+        "threshold": 0.35,
+        "f0_5": 0.6250000000000001,
+        "tp": 7,
+        "fp": 5,
+        "fn": 1,
+        "tn": 51,
+        "precision": 0.5833333333333334,
+        "recall": 0.875,
+        "f1": 0.7000000000000001
+      },
+      {
+        "threshold": 0.45,
+        "f0_5": 0.673076923076923,
+        "tp": 7,
+        "fp": 4,
+        "fn": 1,
+        "tn": 52,
+        "precision": 0.6363636363636364,
+        "recall": 0.875,
+        "f1": 0.7368421052631579
+      },
+      {
+        "threshold": 0.55,
+        "f0_5": 0.673076923076923,
+        "tp": 7,
+        "fp": 4,
+        "fn": 1,
+        "tn": 52,
+        "precision": 0.6363636363636364,
+        "recall": 0.875,
+        "f1": 0.7368421052631579
+      },
+      {
+        "threshold": 0.65,
+        "f0_5": 0.673076923076923,
+        "tp": 7,
+        "fp": 4,
+        "fn": 1,
+        "tn": 52,
+        "precision": 0.6363636363636364,
+        "recall": 0.875,
+        "f1": 0.7368421052631579
+      },
+      {
+        "threshold": 0.75,
+        "f0_5": 0.6944444444444444,
+        "tp": 5,
+        "fp": 2,
+        "fn": 3,
+        "tn": 54,
+        "precision": 0.7142857142857143,
+        "recall": 0.625,
+        "f1": 0.6666666666666666
+      }
+    ],
+    "engine": [
+      {
+        "threshold": 0.15,
+        "f0_5": 0.9722222222222222,
+        "tp": 7,
+        "fp": 0,
+        "fn": 1,
+        "tn": 56,
+        "precision": 1.0,
+        "recall": 0.875,
+        "f1": 0.9333333333333333
+      },
+      {
+        "threshold": 0.25,
+        "f0_5": 0.9375,
+        "tp": 6,
+        "fp": 0,
+        "fn": 2,
+        "tn": 56,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571
+      },
+      {
+        "threshold": 0.35,
+        "f0_5": 0.9375,
+        "tp": 6,
+        "fp": 0,
+        "fn": 2,
+        "tn": 56,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571
+      },
+      {
+        "threshold": 0.45,
+        "f0_5": 0.8928571428571429,
+        "tp": 5,
+        "fp": 0,
+        "fn": 3,
+        "tn": 56,
+        "precision": 1.0,
+        "recall": 0.625,
+        "f1": 0.7692307692307693
+      },
+      {
+        "threshold": 0.55,
+        "f0_5": 0.8333333333333334,
+        "tp": 4,
+        "fp": 0,
+        "fn": 4,
+        "tn": 56,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666
+      },
+      {
+        "threshold": 0.65,
+        "f0_5": 0.8333333333333334,
+        "tp": 4,
+        "fp": 0,
+        "fn": 4,
+        "tn": 56,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666
+      },
+      {
+        "threshold": 0.75,
+        "f0_5": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 5,
+        "tn": 56,
+        "precision": 1.0,
+        "recall": 0.375,
+        "f1": 0.5454545454545454
+      }
+    ],
+    "glass": [
+      {
+        "threshold": 0.15,
+        "f0_5": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 5,
+        "tn": 56,
+        "precision": 1.0,
+        "recall": 0.375,
+        "f1": 0.5454545454545454
+      },
+      {
+        "threshold": 0.25,
+        "f0_5": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 5,
+        "tn": 56,
+        "precision": 1.0,
+        "recall": 0.375,
+        "f1": 0.5454545454545454
+      },
+      {
+        "threshold": 0.35,
+        "f0_5": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 5,
+        "tn": 56,
+        "precision": 1.0,
+        "recall": 0.375,
+        "f1": 0.5454545454545454
+      },
+      {
+        "threshold": 0.45,
+        "f0_5": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 5,
+        "tn": 56,
+        "precision": 1.0,
+        "recall": 0.375,
+        "f1": 0.5454545454545454
+      },
+      {
+        "threshold": 0.55,
+        "f0_5": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 5,
+        "tn": 56,
+        "precision": 1.0,
+        "recall": 0.375,
+        "f1": 0.5454545454545454
+      },
+      {
+        "threshold": 0.65,
+        "f0_5": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 5,
+        "tn": 56,
+        "precision": 1.0,
+        "recall": 0.375,
+        "f1": 0.5454545454545454
+      },
+      {
+        "threshold": 0.75,
+        "f0_5": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 5,
+        "tn": 56,
+        "precision": 1.0,
+        "recall": 0.375,
+        "f1": 0.5454545454545454
+      }
+    ]
+  },
+  "limits": [
+    "Small eight-class subset, not a full ESC-50 benchmark or a traffic deployment benchmark.",
+    "Clip labels are weak labels: secondary sounds may occur. No event timestamp accuracy is measured.",
+    "YAMNet pretraining overlap with this public dataset has not been audited.",
+    "The custom head chooses among eight known classes; unknown sounds and mixtures are not validated.",
+    "No accident-cause, tire-squeal, collision, or real-speed accuracy is established.",
+    "Raw data and derived model are for this noncommercial research prototype; retain ESC-50 license/attribution."
+  ]
+}

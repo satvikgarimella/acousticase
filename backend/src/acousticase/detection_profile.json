@@ -1,0 +1,18 @@
+{
+  "version": "esc50-dev-v1",
+  "provenance": "Four target thresholds selected on ESC-50 subset fold 4 using clip-label F0.5; folds 1-3 train the separate head, fold 5 held out. Other thresholds remain heuristics. Not probability calibration.",
+  "onset_thresholds": {
+    "horn": 0.15,
+    "siren": 0.75,
+    "engine": 0.15,
+    "tire_squeal": 0.45,
+    "glass": 0.75,
+    "impact": 0.55,
+    "vehicle": 0.45,
+    "speech": 0.45,
+    "footsteps": 0.45,
+    "dog": 0.45,
+    "rain": 0.45,
+    "wind": 0.45
+  }
+}

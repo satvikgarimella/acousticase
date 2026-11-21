@@ -22,7 +22,7 @@ from .pipeline import PIPELINE_VERSION, run_analysis, write_json
 logger = logging.getLogger(__name__)
 ASSETS = {"playback.wav": "audio/wav", "waveform.json": "application/json",
           "spectrogram.png": "image/png", "track.json": "application/json",
-          "report.md": "text/markdown", "original": "application/octet-stream"}
+          "report.md": "text/markdown", "original": "application/octet-stream", "sound-scores.json": "application/json"}
 
 
 class Runtime:

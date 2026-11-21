@@ -1,0 +1,9 @@
+{
+  "version": "grouped-v1",
+  "provenance": "Initial heuristic thresholds; not calibrated probabilities.",
+  "onset_thresholds": {
+    "horn": 0.35, "siren": 0.35, "engine": 0.35, "tire_squeal": 0.45,
+    "glass": 0.45, "impact": 0.55, "vehicle": 0.45, "speech": 0.45,
+    "footsteps": 0.45, "dog": 0.45, "rain": 0.45, "wind": 0.45
+  }
+}

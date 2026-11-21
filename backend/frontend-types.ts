@@ -45,6 +45,16 @@ export interface AnalysisResult {
   };
   findings: Array<{ id: string; text: string; evidence_ids: string[]; evidence_type: EvidenceType }>;
   classifier: {status: 'enabled' | 'disabled' | 'failed'; model: string | null; [key: string]: unknown};
-  assets: Record<'audio_url' | 'waveform_url' | 'spectrogram_url' | 'track_url' | 'report_url' | 'original_url', string>;
+  assets: Record<'audio_url' | 'waveform_url' | 'spectrogram_url' | 'track_url' | 'report_url' | 'original_url', string> & {sound_scores_url?: string};
   warnings: string[]; limitations: string[]; processing_seconds: number;
+}
+
+export interface SoundScoreTimeline {
+  timebase: string;
+  window_s: number;
+  hop_s: number;
+  score_meaning: string;
+  start_s: number[];
+  end_s: number[];
+  groups: Array<{key: string; label: string; onset_threshold: number; scores: number[]}>;
 }

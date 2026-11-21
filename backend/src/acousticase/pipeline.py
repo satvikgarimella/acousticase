@@ -7,7 +7,7 @@ from .classifier import YamnetClassifier
 from .dsp import fit_motion, save_spectrogram, track_tone, transient_events
 from .models import AnalysisOptions, AnalysisResult, Event, Finding
 
-PIPELINE_VERSION = "0.1.0"
+PIPELINE_VERSION = "0.2.0"
 LIMITATIONS = [
     "Experimental acoustic analysis, not validated accident reconstruction or forensic certification.",
     "No spatial path, compass direction, source identity, or accident causation is determined.",
@@ -39,13 +39,15 @@ def run_analysis(job_dir: Path, analysis_id: str, metadata: dict, options: Analy
     events = transient_events(x)
     progress("Classifying candidate sounds", 0.5)
     try:
-        suggestions, classifier_info = classifier.classify(x, options.use_classifier)
+        suggestions, classifier_info = classifier.classify(x, options.use_classifier, score_output=job_dir/"sound-scores.json")
         events.extend(suggestions)
     except Exception as exc:
         classifier_info = {"status": "failed", "model": "Google YAMNet v1", "reason": f"Local classifier failed ({type(exc).__name__}); signal measurements are still available."}
         warnings.append(classifier_info["reason"])
     if classifier_info["status"] == "disabled":
         warnings.append("Sound classification is disabled. Transients are measured, but no vehicle or other sound-class labels are inferred.")
+    if classifier_info.get("omitted_event_count", 0):
+        warnings.append(f"{classifier_info['omitted_event_count']} lower-scoring sound events were omitted from the timeline; the score asset retains all frame scores.")
     progress("Tracking a tonal ridge", 0.65)
     track, tracking_warnings = track_tone(x, options)
     warnings.extend(tracking_warnings)
@@ -94,6 +96,8 @@ def run_analysis(job_dir: Path, analysis_id: str, metadata: dict, options: Analy
                 "report_url": f"{base}/report.md", "original_url": f"{base}/original"},
         warnings=warnings, limitations=LIMITATIONS, processing_seconds=round(time.monotonic()-began, 3),
     )
+    if classifier_info["status"] == "enabled" and (job_dir/"sound-scores.json").exists():
+        result.assets["sound_scores_url"] = f"{base}/sound-scores.json"
     progress("Writing evidence report", 0.95)
     report = ["# AcoustiCase investigation report", "", "Experimental acoustic analysis. Generated from structured measurements and model suggestions; no generative model is used.", "",
               f"Analysis ID: {analysis_id}", f"Duration: {duration:.2f} seconds", f"Simulated recording: {options.is_simulated}", "",

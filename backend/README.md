@@ -41,6 +41,8 @@ The downloader uses the official Google-hosted `yamnet.h5` and checks its SHA-25
 - Original-byte preservation, SHA-256, source audio timestamp offset, mono 16 kHz analysis/playback copy, duration/size checks, timestamp-discontinuity rejection, clipping warning.
 - Downsampled waveform envelope, full-clip spectrogram PNG, rapid-energy transient measurements.
 - Optional pretrained Google YAMNet sound labels as **model suggestions**, with uncalibrated scores and approximate time windows.
+- Grouped sound events, separate onset/continuation thresholds, short-gap consolidation, broad-label suppression, and an optional frame-score asset for the frontend.
+- Reproducible real-audio evaluation and a separately trained experimental clip classifier. See [ML model card](../docs/ML_MODEL_CARD.md) for the 320-clip split, 61/64 test classification result, detector trade-offs, and limits.
 - One continuous tonal ridge in a selected window, a propagation-delay-aware constant-speed Doppler fit, comparison with steady-tone and linear-drift baselines, and explicit unsupported outcomes.
 - Evidence IDs, deterministic report findings, Markdown report, asynchronous job status, persistent disk results, content/options/model-version caching, and a bounded single-worker queue.
 - OpenAPI documentation and a TypeScript contract for Arjun.
@@ -55,6 +57,12 @@ curl -X POST http://127.0.0.1:8000/analyses \
 ```
 
 Use the returned `analysis_id` to poll `GET /analyses/{id}`, then fetch `GET /analyses/{id}/results` once status is `complete`. Returned asset URLs are relative to the backend origin. Tests and generated audio are explicitly simulated; they are not a benchmark of real-car accuracy.
+
+For a richer sound timeline, upload `examples/constructed-sound-scene.wav` with options `{"is_simulated":true}`. It is a curated collage of separate engine, horn, glass, and siren recordings, not an actual incident. Keep motion assumptions false. Attribution and source-excerpt spans accompany the audio. Sound recognition remains experimental, especially for glass breaking and mixtures.
+
+## ML development
+
+The app's event detector uses grouped YAMNet scores. The trained eight-class head is a separate short-clip experiment and is not used to infer event timestamps. To reproduce training and evaluation, install `pip install -e '.[ml,test]'`, run `python scripts/download_eval.py`, `python scripts/ml_benchmark.py extract`, then `python scripts/ml_benchmark.py run`. See the model card for details and limitations. Raw data and features stay in ignored `data/`.
 
 ## Motion controls and interpretation
 

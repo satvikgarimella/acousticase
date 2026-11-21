@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/karolpiczak/ESC-50",
+  "revision": "33c8ce9eb2cf0b1c2f8bcf322eb349b6be34dbb6",
+  "categories": ["car_horn", "siren", "engine", "glass_breaking", "rain", "wind", "footsteps", "dog"],
+  "train_folds": [1, 2, 3],
+  "validation_folds": [4],
+  "test_folds": [5],
+  "purpose": "Small closed-set development benchmark; not accident reconstruction, speed validation, or a full ESC-50 benchmark."
+}

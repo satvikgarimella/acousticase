@@ -3,7 +3,7 @@
   "info": {
     "title": "AcoustiCase \u2014 Satvik's backend",
     "description": "Local experimental audio investigation API. Single worker; no authentication. See README before deployment.",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "paths": {
     "/health": {
