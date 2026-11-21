@@ -1,0 +1,55 @@
+{
+  "illustrative": true,
+  "recording": {
+    "id": "REC-DEMO-001",
+    "filename": "downtown-passby.wav",
+    "durationSeconds": 18.4
+  },
+  "assets": {
+    "waveform": { "url": "/assets/REC-DEMO-001-waveform.json" },
+    "spectrogram": { "url": "/assets/REC-DEMO-001-spectrogram.png" }
+  },
+  "events": [
+    {
+      "id": "EVT-001",
+      "startSeconds": 4.2,
+      "endSeconds": 4.9,
+      "label": "Vehicle pass-by",
+      "confidence": 0.82,
+      "evidenceType": "tonal-movement"
+    }
+  ],
+  "measurements": {
+    "frequencyTrack": {
+      "eventId": "EVT-001",
+      "points": [
+        { "timeSeconds": 4.2, "frequencyHz": 920 },
+        { "timeSeconds": 4.9, "frequencyHz": 650 }
+      ]
+    },
+    "passBy": {
+      "eventId": "EVT-001",
+      "estimatedTimeSeconds": 4.55,
+      "speedKmh": null,
+      "status": "experimental",
+      "assumptions": [
+        "A single tonal source is present.",
+        "The microphone is stationary.",
+        "Speed cannot be reliably estimated from this recording alone."
+      ]
+    }
+  },
+  "findings": [
+    {
+      "id": "FND-001",
+      "eventIds": ["EVT-001"],
+      "title": "Evidence suggests a moving tonal source",
+      "summary": "Frequency decreases around the detected pass-by.",
+      "confidence": "medium"
+    }
+  ],
+  "limitations": [
+    "Illustrative mock data.",
+    "Environmental noise may affect classification and frequency tracking."
+  ]
+}
