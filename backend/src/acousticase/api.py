@@ -11,7 +11,8 @@ from pathlib import Path
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import ValidationError
 
 from .classifier import YamnetClassifier
@@ -71,6 +72,9 @@ class Runtime:
 
 def create_app(settings: Settings | None = None) -> FastAPI:
     config = settings or Settings()
+    frontend_dir = Path(__file__).resolve().parents[3] / "frontend"
+    examples_dir = Path(__file__).resolve().parents[2] / "examples"
+    has_frontend = (frontend_dir / "index.html").is_file()
 
     @asynccontextmanager
     async def lifespan(app):
@@ -85,7 +89,17 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @app.get("/", response_class=HTMLResponse, include_in_schema=False)
     def landing():
+        if has_frontend:
+            return RedirectResponse("/app/")
         return '<!doctype html><title>AcoustiCase backend</title><body style="font:18px system-ui;max-width:680px;margin:80px auto"><h1>AcoustiCase backend</h1><p>Audio processing, evidence events, and conditional Doppler analysis.</p><p><a href="/docs">Open interactive API documentation</a></p><p><a href="/health">Check server and classifier status</a></p><p>Arjun can build the investigation interface against this API.</p></body>'
+
+    @app.get("/demo-audio/{name}", include_in_schema=False)
+    def demo_audio(name: str):
+        permitted = {"simulated-pass-by.wav": "audio/wav", "constructed-sound-scene.wav": "audio/wav",
+                     "CONSTRUCTED-SCENE-ATTRIBUTION.md": "text/plain"}
+        if name not in permitted or not (examples_dir / name).is_file():
+            raise HTTPException(404, "Demo file not found.")
+        return FileResponse(examples_dir / name, media_type=permitted[name])
 
     @app.get("/health")
     def health():
@@ -167,6 +181,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             raise HTTPException(404, "Asset not found.")
         return FileResponse(path, media_type=ASSETS[name], filename="original-upload" if name == "original" else None)
 
+    if has_frontend:
+        app.mount("/app", StaticFiles(directory=frontend_dir, html=True), name="frontend")
     return app
 
 

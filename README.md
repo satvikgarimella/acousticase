@@ -8,7 +8,7 @@ An experimental audio investigation workspace for Hack Western 13. Upload a reco
 
 ```text
 backend/     Python/FastAPI engine, ML evaluation, tests, API types, and labeled demo examples
-frontend/    Arjun's investigation interface (implementation pending)
+frontend/    Arjun's investigation interface, connected to the analysis API
 docs/        Frontend integration handoff and validation results
 ```
 
@@ -22,7 +22,7 @@ pip install -e '.[test]'
 bash run.sh
 ```
 
-Open http://127.0.0.1:8000/docs. The core pipeline needs no paid model API key. Optional local sound classification:
+Open http://127.0.0.1:8000/app/ for the integrated app or http://127.0.0.1:8000/docs for the API. The backend serves the interface on the same origin; no frontend build or second server is needed. The core pipeline needs no paid model API key. Optional local sound classification:
 
 ```bash
 pip install -e '.[classifier]'
@@ -34,7 +34,9 @@ See [backend setup and API details](backend/README.md), [Arjun's integration han
 
 ## Current implementation
 
-The backend includes audio/video decoding, waveform/spectrogram generation, transient detection, grouped YAMNet sound events and score timelines, single-tone tracking, conditional Doppler fitting, asynchronous job status, result caching, and reports grounded in evidence IDs. A separately trained experimental classifier, real-audio benchmark, and reproducible training scripts are included. See [the ML model card](docs/ML_MODEL_CARD.md) for measured results and limitations. The frontend has not yet been implemented.
+The backend includes audio/video decoding, waveform/spectrogram generation, transient detection, grouped YAMNet sound events and score timelines, single-tone tracking, conditional Doppler fitting, asynchronous job status, result caching, and reports grounded in evidence IDs. A separately trained experimental classifier, real-audio benchmark, and reproducible training scripts are included. See [the ML model card](docs/ML_MODEL_CARD.md) for measured results and limitations.
+
+The frontend supports real uploads, processing status, aligned audio playback, event selection and filtering, waveform zoom, measured spectrograms, sound scores, conditional motion results, and backend report downloads. Its built-in examples use the same processing API. Simulated inputs are labeled, and real-upload motion assumptions default to unchecked.
 
 Speed estimates are experimental and conditional on a fixed emitted tone, a stationary microphone, and a simple straight-line pass. Validation currently includes synthetic known-speed audio and a real narration-file smoke test, not a real-car accuracy benchmark. The app does not establish accident causation. Reports currently use structured evidence directly, without an LLM.
 

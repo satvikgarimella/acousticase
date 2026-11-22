@@ -92,3 +92,15 @@ def test_real_event_evidence_links(client):
     ids = {e["id"] for e in result["events"]}
     assert result["findings"]
     assert all(set(f["evidence_ids"]) <= ids for f in result["findings"])
+
+
+def test_integrated_frontend_and_allowlisted_demos(client):
+    root = client.get("/")
+    assert root.status_code == 200 and str(root.url).endswith("/app/")
+    assert 'type="module" src="app.js"' in root.text
+    assert client.get("/app/api-client.js").status_code == 200
+    demo = client.get("/demo-audio/constructed-sound-scene.wav")
+    assert demo.status_code == 200 and demo.content[:4] == b"RIFF"
+    assert client.get("/demo-audio/CONSTRUCTED-SCENE-ATTRIBUTION.md").status_code == 200
+    assert client.get("/demo-audio/README.md").status_code == 404
+    assert client.get("/app/%2e%2e/backend/pyproject.toml").status_code == 404

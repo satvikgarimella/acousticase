@@ -14,7 +14,7 @@
     <main class="app-shell">
       <header class="topbar">
         <a class="brand" href="#" aria-label="AcoustiCase home"><span class="brand-mark">A</span>AcoustiCase</a>
-        <div class="case-status"><span class="status-dot"></span><span id="statusText">Demo case · Ready</span></div>
+        <div class="case-status"><span class="status-dot"></span><span id="statusText">Connecting…</span></div>
         <button class="text-button" id="newCaseButton">+ New recording</button>
       </header>
 
@@ -23,12 +23,25 @@
         <h1>Make sound evidence<br /><em>easy to understand.</em></h1>
         <p class="intro">Upload a recording to identify key moments, inspect its visual evidence, and create a clear, traceable report.</p>
         <label class="dropzone" id="dropzone" for="audioInput">
-          <input id="audioInput" type="file" accept="audio/*" />
+          <input id="audioInput" type="file" accept="audio/*,video/*,.wav,.mp3,.m4a,.mp4,.flac,.ogg,.webm" />
           <span class="upload-icon">↥</span>
-          <strong>Drop an audio file here</strong>
-          <span>or click to browse · WAV, MP3, M4A</span>
+          <strong>Drop an audio or video file here</strong>
+          <span>or click to browse · Up to 100 MiB and 5 minutes</span>
         </label>
-        <button class="primary-button demo-button" id="openDemoButton">Open interactive demo <span>→</span></button>
+        <details class="analysis-options">
+          <summary>Recording and motion assumptions</summary>
+          <label><input id="simulatedOption" type="checkbox" /> This is a simulated or constructed recording</label>
+          <label><input id="stationaryOption" type="checkbox" /> The microphone was stationary</label>
+          <label><input id="constantToneOption" type="checkbox" /> The source emitted a constant tone</label>
+          <p>Motion estimates also assume a single source moving at constant speed on a straight path. A changing engine pitch can resemble Doppler. Leave assumptions unchecked unless you can justify them.</p>
+        </details>
+        <div class="demo-actions">
+          <button class="primary-button demo-button" id="openDemoButton">Try constructed sound scene <span>→</span></button>
+          <button class="secondary-button demo-button" id="openSimulationButton">Try known-speed simulation</button>
+        </div>
+        <p class="upload-note">The synthetic pass-by uses a constant source tone and a stationary microphone. Both examples are labeled as simulated.</p>
+        <p class="upload-note"><a href="/demo-audio/CONSTRUCTED-SCENE-ATTRIBUTION.md" target="_blank" rel="noopener">Constructed-scene source credits</a></p>
+        <div id="uploadError" class="error-message hidden" role="alert"></div>
         <p class="upload-note">Your original audio stays attached to the case. Analysis copies are used for processing.</p>
       </section>
 
@@ -43,9 +56,10 @@
       <section id="caseScreen" class="case-screen hidden">
         <div class="case-heading">
           <div>
-            <div class="eyebrow">Investigation / <span id="caseId">REC-DEMO-001</span></div>
-            <h2 id="recordingName">downtown-passby.wav</h2>
-            <p><span id="recordingDuration">00:18.4</span> · Uploaded <span id="uploadTime">just now</span></p>
+            <div class="eyebrow">Investigation / <span id="caseId"></span></div>
+            <h2 id="recordingName"></h2>
+            <p><span id="recordingDuration"></span> · Analyzed <span id="uploadTime">just now</span></p>
+            <span id="simulationBadge" class="simulation-badge hidden">Simulated / constructed recording</span>
           </div>
           <div class="heading-actions">
             <span class="ready-pill">Analysis complete</span>
@@ -56,11 +70,11 @@
         <section class="player-card">
           <div class="player-controls">
             <button class="play-button" id="playButton" aria-label="Play recording">▶</button>
-            <div class="time-readout"><span id="currentTime">00:00.0</span><span>/</span><span id="totalTime">00:18.4</span></div>
-            <div class="volume">⌁ Original audio</div>
+            <div class="time-readout"><span id="currentTime">00:00.0</span><span>/</span><span id="totalTime">00:00.0</span></div>
+            <div class="volume">⌁ Analysis audio · aligned to evidence</div>
           </div>
-          <input id="audioSeek" class="audio-seek" type="range" min="0" max="18.4" value="0" step="0.1" aria-label="Audio position" />
-          <audio id="audioPlayer"></audio>
+          <input id="audioSeek" class="audio-seek" type="range" min="0" max="0" value="0" step="0.01" aria-label="Audio position" />
+          <audio id="audioPlayer" preload="metadata"></audio>
         </section>
 
         <div class="dashboard-grid">
@@ -68,31 +82,39 @@
             <section class="panel waveform-panel">
               <div class="panel-heading"><div><span class="panel-label">Evidence view 01</span><h3>Audio timeline</h3></div><button class="view-button" id="zoomButton">Zoom to event</button></div>
               <div class="legend"><span><i class="wave-legend"></i>Amplitude</span><span><i class="event-legend"></i>Detected event</span><span><i class="cursor-legend"></i>Playback position</span></div>
-              <div class="chart-wrap" id="waveformWrap"><canvas id="waveform" aria-label="Audio waveform visualization"></canvas><div id="eventMarkers"></div><div id="playhead" class="playhead"></div></div>
-              <div class="chart-axis"><span>0:00</span><span>0:05</span><span>0:10</span><span>0:15</span><span>0:18</span></div>
+              <div class="chart-wrap" id="waveformWrap"><canvas id="waveform" aria-label="Measured audio waveform"></canvas><div id="selectedRange" class="selected-range hidden"></div><div id="eventMarkers"></div><div id="playhead" class="playhead"></div></div>
+              <div id="waveformAxis" class="chart-axis"></div>
             </section>
 
             <section class="panel spectrogram-panel">
               <div class="panel-heading"><div><span class="panel-label">Evidence view 02</span><h3>Spectrogram</h3></div><span class="mono-label">Frequency (Hz)</span></div>
-              <div class="spectrogram-wrap"><canvas id="spectrogram" aria-label="Spectrogram visualization"></canvas><div id="spectrogramPlayhead" class="playhead"></div><div class="frequency-axis"><span>8k</span><span>4k</span><span>0</span></div></div>
-              <div class="chart-axis compact"><span>0:00</span><span>0:05</span><span>0:10</span><span>0:15</span><span>0:18</span></div>
+              <div class="spectrogram-image-wrap"><img id="spectrogram" alt="Measured spectrogram of the full recording, with time and frequency axes" /></div>
+              <p class="chart-caption">Full recording · generated from decoded audio</p>
+            </section>
+
+            <section id="soundScoresPanel" class="panel hidden">
+              <div class="panel-heading"><div><span class="panel-label">Sound model output</span><h3>Sound score over time</h3></div><select id="soundGroupSelect" aria-label="Sound group"></select></div>
+              <canvas id="soundScores" class="score-canvas" aria-label="Uncalibrated sound model score over time"></canvas>
+              <div id="soundScoresAxis" class="chart-axis"></div>
+              <p class="chart-caption">Scores range from 0 to 1 and are not probabilities. Dashed line: event onset threshold.</p>
             </section>
           </div>
 
           <aside class="side-column">
             <section class="panel event-panel">
-              <div class="panel-heading"><div><span class="panel-label">Detected moments</span><h3>Event timeline <span id="eventCount" class="count"></span></h3></div><button class="filter-button" id="filterButton">All ▾</button></div>
+              <div class="panel-heading"><div><span class="panel-label">Detected moments</span><h3>Event timeline <span id="eventCount" class="count"></span></h3></div><select class="filter-button" id="filterButton" aria-label="Evidence type"><option value="all">All evidence</option><option value="measurement">Measurements</option><option value="model_suggestion">Model suggestions</option><option value="conditional_inference">Conditional inferences</option></select></div>
               <div class="event-list" id="eventList"></div>
               <p id="noEvents" class="empty-state hidden">No events match this filter.</p>
             </section>
 
             <section class="panel finding-panel">
-              <div class="panel-heading"><div><span class="panel-label">Case finding</span><h3>What the evidence suggests</h3></div><span class="confidence">Medium confidence</span></div>
-              <p id="findingSummary">A tonal source decreases in frequency while passing the microphone, consistent with a moving vehicle.</p>
+              <div class="panel-heading"><div><span class="panel-label">Case finding</span><h3>What the evidence suggests</h3></div><span id="evidenceType" class="confidence"></span></div>
+              <p id="findingSummary"></p>
+              <p id="evidenceDetails" class="chart-caption"></p>
               <button class="evidence-link" id="openFinding">View supporting event <span>→</span></button>
               <div class="assumptions">
-                <strong>Important limitation</strong>
-                <p>Speed cannot be determined reliably from this recording alone. The frequency pattern is evidence of movement, not a verified speed measurement.</p>
+                <strong>Interpretation</strong>
+                <p id="findingCaveat">Model suggestions are unverified. A transient does not establish a collision, and pitch changes do not establish movement.</p>
               </div>
             </section>
           </aside>
@@ -101,13 +123,21 @@
         <section class="panel measurements-panel">
           <div class="panel-heading"><div><span class="panel-label">Measurement record</span><h3>Pass-by analysis</h3></div><span class="experimental-pill">Experimental</span></div>
           <div class="measurement-grid">
-            <div class="frequency-card"><div class="metric"><span>Tracked tonal frequency</span><strong>920 <small>→</small> 650 <small>Hz</small></strong><p>Event EVT-001 · 4.2–4.9 seconds</p></div><canvas id="frequencyChart" aria-label="Tracked frequency chart"></canvas></div>
-            <dl class="measurement-list"><div><dt>Possible closest approach</dt><dd>4.55 s <span>estimated</span></dd></div><div><dt>Speed estimate</dt><dd>Insufficient evidence</dd></div><div><dt>Method</dt><dd>Doppler curve fit attempt</dd></div></dl>
+            <div class="frequency-card"><div class="metric"><span>Supported tonal frequency range</span><strong id="frequencyRange">No supported tone</strong><p id="frequencyWindow"></p></div><div><canvas id="frequencyChart" aria-label="Measured frequency track and candidate model fit"></canvas><p id="fitLegend" class="chart-caption"></p></div></div>
+            <dl class="measurement-list"><div><dt>Model closest approach</dt><dd id="closestApproach">Unavailable</dd></div><div><dt>Speed estimate</dt><dd id="speedEstimate">Insufficient evidence</dd></div><div><dt>Fit status</dt><dd id="motionStatus"></dd></div></dl>
           </div>
+          <ul id="motionReasons" class="detail-list"></ul>
+          <p id="motionCaveat" class="chart-caption"></p>
+        </section>
+        <section class="panel limitations-panel">
+          <div class="panel-heading"><div><span class="panel-label">Reading this result</span><h3>Warnings and limitations</h3></div></div>
+          <ul id="warningsList" class="detail-list"></ul>
+          <details><summary>Analysis limitations</summary><ul id="limitationsList" class="detail-list"></ul></details>
+          <a id="originalDownload" class="evidence-link" download>Download original recording</a>
         </section>
       </section>
     </main>
     <div id="toast" class="toast" role="status"></div>
-    <script src="app.js"></script>
+    <script type="module" src="app.js"></script>
   </body>
 </html>
