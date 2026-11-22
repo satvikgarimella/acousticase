@@ -8,7 +8,7 @@ A working CPU-first prototype for audio event investigation. Arjun owns the fron
 bash run.sh
 ```
 
-Open http://127.0.0.1:8000/docs for an interactive upload/API client. Health and classifier availability: http://127.0.0.1:8000/health.
+Open http://127.0.0.1:8000/app/ for the integrated investigation interface or http://127.0.0.1:8000/docs for the interactive API client. Health and classifier availability: http://127.0.0.1:8000/health. The server mounts the sibling `frontend/` directory when present; a backend-only installation retains the API landing page.
 
 The supplied launcher uses the backend's `.venv`. Set it up using the installation steps below. No paid API key is required. The report is generated deterministically from measurements and sound-model suggestions, not by an LLM.
 

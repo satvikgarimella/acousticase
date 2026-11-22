@@ -1,5 +1,7 @@
 # Arjun's integration handoff
 
+The frontend is now connected in `frontend/` and served at `/app/` by the backend. See [integration verification](FRONTEND_INTEGRATION.md) for setup and tested user flows. The API contract below remains the reference for further UI changes.
+
 Satvik's backend runs at `http://127.0.0.1:8000`. Interactive docs: `/docs`; machine-readable schema: `/openapi.json`. This URL refers to the computer running the browser: on a different laptop you need to run the backend there or arrange a reachable shared server. No shared server has been deployed.
 
 ## Integration sequence
